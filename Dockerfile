@@ -9,7 +9,7 @@ COPY ./app/package.json ./
 RUN npm install --only=production
 
 # copy everything else
-COPY ./app/app.js
+COPY ./app/app.js .
 COPY ./app/views/ ./app/views
 
 EXPOSE 5000
