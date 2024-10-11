@@ -17,15 +17,16 @@ jobs:
       - uses: 'google-github-actions/auth@v2'
         name: Authenticate to GCP
         with:
+          project_id: 'cc-fall2024'
           workload_identity_provider: 'projects/584694283094/locations/global/workloadIdentityPools/github2/providers/dansc0de' # update with your Workload Identity Pool
-          service_account: 'github-actions@cc-fall2024.iam.gserviceaccount.com' # update with your ServiceAccount
+          # service_account: 'github-actions@cc-fall2024.iam.gserviceaccount.com' # update with your ServiceAccount
 
       # push our code
       - uses: RafikFarhad/push-to-gcr-github-action@v5-rc1
         with:
           registry: gcr.io
-          project_id: cc-docker-deploy
-          image: node-demo
+          project_id: cc-fall2024
+          image_name: node-demo
           image_tag: latest,v1
           dockerfile: ./Dockerfile
           context: .
