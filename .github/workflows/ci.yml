@@ -10,22 +10,24 @@ jobs:
       contents: 'read'
       id-token: 'write'
     steps:
+      # checkout code
       - uses: actions/checkout@v4
 
+      # authenticate with GCP using serviceaccount
       - uses: 'google-github-actions/auth@v2'
         name: Authenticate to GCP
         with:
           workload_identity_provider: 'projects/584694283094/locations/global/workloadIdentityPools/github2/providers/dansc0de' # update with your Workload Identity Pool
           service_account: 'github-actions@cc-fall2024.iam.gserviceaccount.com' # update with your ServiceAccount
 
-
+      # push our code
       - uses: RafikFarhad/push-to-gcr-github-action@v5-rc1
         with:
           registry: gcr.io
           project_id: cc-docker-deploy
           image: node-demo
           image_tag: latest,v1
-          dockerfile: ./app/Dockerfile
-          content: ./app
+          dockerfile: ./Dockerfile
+          context: .
           
 
