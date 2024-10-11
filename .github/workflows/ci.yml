@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-and-push-to-gcr:
-    runs-on:
+    runs-on: ubuntu-22.04
     permissions:
       contents: 'read'
       id-token: 'write'
