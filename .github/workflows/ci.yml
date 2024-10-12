@@ -19,7 +19,6 @@ jobs:
         id: auth
         name: Authenticate to GCP
         with:
-          token_format: access_token
           project_id: 'cc-fall2024'
           workload_identity_provider: 'projects/584694283094/locations/global/workloadIdentityPools/github2/providers/dansc0de' # update with your Workload Identity Pool
           # service_account: 'github-actions@cc-fall2024.iam.gserviceaccount.com' # update with your ServiceAccount
