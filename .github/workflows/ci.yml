@@ -28,5 +28,5 @@ jobs:
         with:
           registry: gcr.io
           username: oauth2accesstoken
-          password: ${{ steps.auth.outputs.access_token }}
+          password: ${{ steps.auth.outputs.auth_token }}
 
