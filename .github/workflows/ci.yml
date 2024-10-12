@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - main
+      - login-gcr.io
 
 jobs:
   build-and-push-to-gcr:
@@ -15,20 +16,18 @@ jobs:
 
       # authenticate with GCP using serviceaccount
       - uses: 'google-github-actions/auth@v2'
+        id: auth
         name: Authenticate to GCP
         with:
+          token_format: access_token
           project_id: 'cc-fall2024'
           workload_identity_provider: 'projects/584694283094/locations/global/workloadIdentityPools/github2/providers/dansc0de' # update with your Workload Identity Pool
           # service_account: 'github-actions@cc-fall2024.iam.gserviceaccount.com' # update with your ServiceAccount
 
-      # push our code
-      - uses: RafikFarhad/push-to-gcr-github-action@v5-rc1
+      # login to GCR
+      - uses: docker/login-action@v3
         with:
           registry: gcr.io
-          project_id: cc-fall2024
-          image_name: node-demo
-          image_tag: latest,v1
-          dockerfile: ./Dockerfile
-          context: .
-          
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.access_token }}
 
