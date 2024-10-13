@@ -30,17 +30,22 @@ jobs:
       - name: gcloud Configure Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
-      # setup docker buildx
-      - name: Setup docker buildx
-        uses: docker/setup-buildx-action@v3
-        with:
-          platforms: linux/amd64,linux/arm64
+      - name: Build and Push Without Buildx
+        run: |
+          docker build -t us-central1-docker.pkg.dev/cc-fall2024/dansc0de:v1 .
+          docker push us-central1-docker.pkg.dev/cc-fall2024/dansc0de:v1
 
-      - name: Build and Push
-        uses: docker/build-push-action@v6
-        with:
-          context: ./
-          file: ./Dockerfile
-          push: true
-          tags: us-central1-docker.pkg.dev/cc-fall2024/dansc0de:v1
+#      # setup docker buildx
+#      - name: Setup docker buildx
+#        uses: docker/setup-buildx-action@v3
+#        with:
+#          platforms: linux/amd64
+#
+#      - name: Build and Push
+#        uses: docker/build-push-action@v6
+#        with:
+#          context: ./
+#          file: ./Dockerfile
+#          push: true
+#          tags: us-central1-docker.pkg.dev/cc-fall2024/dansc0de:test
 
