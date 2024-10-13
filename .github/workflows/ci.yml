@@ -27,13 +27,13 @@ jobs:
       - name: gcloud Configure Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
-      # gcloud Auth
-      - name: gcloud Auth To gcr.io
-        run: >
-          gcloud auth print-access-token \
-          --impersonate-service-account=github-actions@cc-fall2024.iam.gserviceaccount.com | docker login \
-          -u oauth2accesstoken \
-          --password-stdin https://us-central1-docker.pkg.dev
+#      # gcloud Auth
+#      - name: gcloud Auth To gcr.io
+#        run: >
+#          gcloud auth print-access-token \
+#          --impersonate-service-account=github-actions@cc-fall2024.iam.gserviceaccount.com | docker login \
+#          -u oauth2accesstoken \
+#          --password-stdin https://us-central1-docker.pkg.dev
 
       # setup docker buildx
       - name: Setup docker buildx
