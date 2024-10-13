@@ -19,21 +19,12 @@ jobs:
         id: auth
         name: Authenticate to GCP
         with:
-          project_id: 'cc-fall2024'
+          project_id: 'cc-fall2024' # update with your project ID
           workload_identity_provider: 'projects/584694283094/locations/global/workloadIdentityPools/github2/providers/dansc0de' # update with your Workload Identity Pool
-          # service_account: 'github-actions@cc-fall2024.iam.gserviceaccount.com' # update with your ServiceAccount
 
-      - name: Print access token
-        run: echo ${{ steps.auth.outputs.access_token }}
-        
-      # configure docker
+      # configure/login with docker
       - name: gcloud Configure Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
-
-#      - name: Build and Push Without Buildx
-#        run: |
-#          docker build -t us-central1-docker.pkg.dev/cc-fall2024/dansc0de/node-demo:v1 .
-#          docker push us-central1-docker.pkg.dev/cc-fall2024/dansc0de/node-demo:v1
 
       # setup docker buildx
       - name: Setup docker buildx
@@ -49,3 +40,9 @@ jobs:
           push: true
           tags: us-central1-docker.pkg.dev/cc-fall2024/dansc0de/node-demo:test
 
+# @note: you can use regular docker commands instead of the shared action
+#      - name: Build and Push Without Buildx
+#        run: |
+#          docker build -t [GCP REGION].pkg.dev/[PROJECT ID]/[REPO NAME]/[IMAGE NAME]:[TAG] .
+#          docker push [GCP REGION].pkg.dev/[PROJECT ID]/[REPO NAME]/[IMAGE NAME]:[TAG]
+#          --> us-central1.pkg.dev/cc-fall2024/dansc0de/node-demo:v1 <--
