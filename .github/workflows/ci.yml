@@ -23,17 +23,12 @@ jobs:
           workload_identity_provider: 'projects/584694283094/locations/global/workloadIdentityPools/github2/providers/dansc0de' # update with your Workload Identity Pool
           # service_account: 'github-actions@cc-fall2024.iam.gserviceaccount.com' # update with your ServiceAccount
 
+      - name: Print access token
+        run: echo ${{ steps.auth.outputs.access_token }}
+        
       # configure docker
       - name: gcloud Configure Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
-
-#      # gcloud Auth
-#      - name: gcloud Auth To gcr.io
-#        run: >
-#          gcloud auth print-access-token \
-#          --impersonate-service-account=github-actions@cc-fall2024.iam.gserviceaccount.com | docker login \
-#          -u oauth2accesstoken \
-#          --password-stdin https://us-central1-docker.pkg.dev
 
       # setup docker buildx
       - name: Setup docker buildx
@@ -48,7 +43,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: us-central1-docker.pkg.dev/cc-fall2024/dansc0de:v1
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          provenance: false
 
