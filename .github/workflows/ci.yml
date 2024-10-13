@@ -32,8 +32,8 @@ jobs:
 
       - name: Build and Push Without Buildx
         run: |
-          docker build -t us-central1-docker.pkg.dev/cc-fall2024/dansc0de:v1 .
-          docker push us-central1-docker.pkg.dev/cc-fall2024/dansc0de:v1
+          docker build -t us-central1-docker.pkg.dev/cc-fall2024/dansc0de/node-demo:v1 .
+          docker push us-central1-docker.pkg.dev/cc-fall2024/dansc0de/node-demo:v1
 
 #      # setup docker buildx
 #      - name: Setup docker buildx
