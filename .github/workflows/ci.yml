@@ -47,7 +47,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: us-central1-docker.pkg.dev/cc-fall2024/dansc0de/node-demo:v1
+          tags: us-central1-docker.pkg.dev/cc-fall2024/dansc0de:v1
           cache-from: type=gha
           cache-to: type=gha,mode=max
           provenance: false
