@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - main
-      - login-gcr.io
+      - login-gcr.io # @note: use any development branch you would like
 
 jobs:
   build-and-push-to-gcr:
@@ -14,31 +14,31 @@ jobs:
       # checkout code
       - uses: actions/checkout@v4
 
-      # authenticate with GCP using serviceaccount
-      - uses: 'google-github-actions/auth@v2'
-        id: auth
-        name: Authenticate to GCP
-        with:
-          project_id: 'cc-fall2024' # update with your project ID
-          workload_identity_provider: 'projects/584694283094/locations/global/workloadIdentityPools/github2/providers/dansc0de' # update with your Workload Identity Pool
+      # authenticate with GCP with workload identity provider
+#      - uses: 'google-github-actions/auth@v2'
+#        id: auth
+#        name: Authenticate to GCP
+#        with:
+#          project_id: 'your-special-project-id' # update with your project ID
+#          workload_identity_provider: 'projects/012345678901/locations/global/workloadIdentityPools/github2/providers/dansc0de' # update with your Workload Identity Pool
 
       # configure/login with docker
-      - name: gcloud Configure Docker
-        run: gcloud auth configure-docker us-central1-docker.pkg.dev
+#      - name: gcloud Configure Docker
+#        run: gcloud auth configure-docker [REGION].pkg.dev
 
       # setup docker buildx
-      - name: Setup docker buildx
-        uses: docker/setup-buildx-action@v3
-        with:
-          platforms: linux/amd64,linux/arm64
+#      - name: Setup docker buildx
+#        uses: docker/setup-buildx-action@v3
+#        with:
+#          platforms: linux/amd64,linux/arm64
 
-      - name: Build and Push
-        uses: docker/build-push-action@v6
-        with:
-          context: ./
-          file: ./Dockerfile
-          push: true
-          tags: us-central1-docker.pkg.dev/cc-fall2024/dansc0de/node-demo:test
+#      - name: Build and Push
+#        uses: docker/build-push-action@v6
+#        with:
+#          context: ./
+#          file: ./Dockerfile
+#          push: true
+#          tags: us-central1-docker.pkg.dev/cc-fall2024/dansc0de/node-demo:test
 
 # @note: you can use regular docker commands instead of the shared action
 #      - name: Build and Push Without Buildx
