@@ -20,7 +20,7 @@ jobs:
         name: Authenticate to GCP
         with:
           project_id: 'cc-fall2024' # update with your project ID
-          workload_identity_provider: 'projects/012345678901/locations/global/workloadIdentityPools/github2/providers/dansc0de' # update with your Workload Identity Pool
+          workload_identity_provider: 'projects/584694283094/locations/global/workloadIdentityPools/github2/providers/dansc0de' # update with your Workload Identity Pool
 
       # configure/login with docker
       - name: gcloud Configure Docker
