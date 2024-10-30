@@ -32,13 +32,13 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
 
-#      - name: Build and Push
-#        uses: docker/build-push-action@v6
-#        with:
-#          context: ./
-#          file: ./Dockerfile
-#          push: true
-#          tags: us-central1-docker.pkg.dev/cc-fall2024/dansc0de/node-demo:test
+      - name: Build and Push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./
+          file: ./Dockerfile
+          push: true
+          tags: us-central1-docker.pkg.dev/cc-fall2024/dansc0de/node-demo:test
 
 # @note: you can use regular docker commands instead of the shared action
 #      - name: Build and Push Without Buildx
