@@ -46,9 +46,9 @@ jobs:
           push: true
           tags: us-central1-docker.pkg.dev/cc-fall2024/dansc0de/node-demo:v2
 
-# @note: you can use regular docker commands instead of the shared action
-#      - name: Build and Push Without Buildx
-#        run: |
-#          docker build -t [GCP REGION].pkg.dev/[PROJECT ID]/[REPO NAME]/[IMAGE NAME]:[TAG] .
-#          docker push [GCP REGION].pkg.dev/[PROJECT ID]/[REPO NAME]/[IMAGE NAME]:[TAG]
+       # @note: you can use regular docker commands instead of the shared action
+       #- name: Build and Push Without Buildx
+       # run: |
+       #   docker build -t [GCP REGION].pkg.dev/[PROJECT ID]/[REPO NAME]/[IMAGE NAME]:[TAG] .
+       #   docker push [GCP REGION].pkg.dev/[PROJECT ID]/[REPO NAME]/[IMAGE NAME]:[TAG]
 #          --> us-central1.pkg.dev/cc-fall2024/dansc0de/node-demo:v1 <--
